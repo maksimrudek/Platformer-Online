@@ -1,18 +1,24 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-
+using TMPro;
 public class CoinCollector : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public TMP_Text coinsText;
 
-    // Update is called once per frame
+    public float coinsCount = 0;
+
     void Update()
     {
-        
+        coinsText.text = coinsCount.ToString();
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Coin"))
+        {
+            coinsCount += 1;
+
+            Destroy(collision.gameObject);
+
+        }
     }
 }
